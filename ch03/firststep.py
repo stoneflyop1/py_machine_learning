@@ -74,12 +74,16 @@ plt.show()
 from sklearn.linear_model import LogisticRegression
 lr = LogisticRegression(C=1000.0, random_state=0)
 lr.fit(X_train_std, y_train)
+
 plot_decision_regions(X_combined_std, y_combined, classifier=lr, test_idx=range(105,150))
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.legend(loc='upper left')
 plt.show()
-lr.predict_proba(X_test_std[0,:])
+# solve 'Passing 1d arrays as data is deprecat ed in 0.17 and will raise ValueError in 0.19'
+# https://stackoverflow.com/questions/35082140/preprocessing-in-scikit-learn-single-sample-depreciation-warning
+t = X_test_std[0,:]
+lr.predict_proba(np.array(t).reshape(1, len(t)))
 
 # logistic regression regulation
 weights, params = [], []
