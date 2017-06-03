@@ -69,3 +69,30 @@ plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.legend(loc='upper left')
 plt.show()
+
+# logistic regression
+from sklearn.linear_model import LogisticRegression
+lr = LogisticRegression(C=1000.0, random_state=0)
+lr.fit(X_train_std, y_train)
+plot_decision_regions(X_combined_std, y_combined, classifier=lr, test_idx=range(105,150))
+plt.xlabel('petal length [standardized]')
+plt.ylabel('petal width [standardized]')
+plt.legend(loc='upper left')
+plt.show()
+lr.predict_proba(X_test_std[0,:])
+
+# logistic regression regulation
+weights, params = [], []
+for c in np.arange(-5,5):
+    p = 10.0**c
+    lr = LogisticRegression(C=p, random_state=0)
+    lr.fit(X_train_std, y_train)
+    weights.append(lr.coef_[1])
+    params.append(p)
+weights = np.array(weights)
+plt.plot(params, weights[:,0], label='petal length')
+plt.plot(params, weights[:,1], linestyle='--', label='petal width')
+plt.xlabel('C')
+plt.legend(loc='upper left')
+plt.xscale('log')
+plt.show()
