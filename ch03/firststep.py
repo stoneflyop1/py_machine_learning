@@ -79,6 +79,7 @@ plot_decision_regions(X_combined_std, y_combined, classifier=lr, test_idx=range(
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.legend(loc='upper left')
+plt.title('logistic regression')
 plt.show()
 # solve 'Passing 1d arrays as data is deprecat ed in 0.17 and will raise ValueError in 0.19'
 # https://stackoverflow.com/questions/35082140/preprocessing-in-scikit-learn-single-sample-depreciation-warning
@@ -99,4 +100,16 @@ plt.plot(params, weights[:,1], linestyle='--', label='petal width')
 plt.xlabel('C')
 plt.legend(loc='upper left')
 plt.xscale('log')
+plt.title('logistic regression with regulation')
+plt.show()
+
+
+from sklearn.svm import SVC
+svm = SVC(C=100.0)
+svm.fit(X_train_std, y_train)
+plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx=range(105,150))
+plt.xlabel('petal length [standardized]')
+plt.ylabel('petal width [standardized]')
+plt.legend(loc='upper left')
+plt.title('svm')
 plt.show()
