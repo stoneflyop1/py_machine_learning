@@ -2,7 +2,7 @@
 
 - 删除或补全缺失的数据(missing values from the dataset)
 - 为机器学习算法获取成型的分类数据(get categorical data into shape)
-- 为模型建造选择相关特性(relevant features)
+- 为模型建造选择相关特征(relevant features)
 
 
 ## 缺失的数据
@@ -21,11 +21,11 @@
 
 ## 处理分类数据(categorical data)
 
-特性可以分为命名特性(nominal)以及有序特性(ordinal)。
+特性可以分为命名特征(nominal)以及有序特征(ordinal)。
 
 代码示例见：[preprocess.py](preprocess.py)
 
-### 映射有序特性(Mapping ordinal features)
+### 映射有序特征(Mapping ordinal features)
 
 我们通常把有序特性的数据映射到整数类型数据上，若衣服的大小号虽然用字符串标识，但在使用时，我们一般按照大小号的顺序映射到整型数值。
 
@@ -47,3 +47,9 @@ df.columns = ['color', 'size', 'price', 'classlabel']
 >>> y
 array([0, 1, 0])
 ```
+
+### 对命名特征(nominal feature)实行one-hot编码
+
+命名特征也可以使用上文提到的`LabelEncoder`进行到数值的映射。不过这样映射的值会形成天然的有序关系，而原本的命名特征其实没有这种关系。一种变通的方法(workaround)就是使用one-hot编码。
+
+one-hot编码的想法是：对于命名特征的每个唯一值都创建一个虚拟的特征(dummy feature)。比如：对于颜色特征的blue,green,red。可以创建三个分别为blue,green,red的虚拟特征。

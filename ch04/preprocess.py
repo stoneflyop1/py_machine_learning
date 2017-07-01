@@ -5,13 +5,12 @@ csv_data = ''' green,M,10.1,class1
             red,L,13.5,class2
             blue,XL,15.3,class1
             yellow,,5.3,class3'''
-df = pd.read_csv(StringIO(csv_data))
-# df = pd.DataFrame([
-#     ['green', 'M',  10.1, 'class1'],
-#     ['red',   'L',  13.5, 'class2'],
-#     ['blue',  'XL', 15.3, 'class1'],
-#     ['yellow', None, 15.3, 'class3']
-# ])
+# df = pd.read_csv(StringIO(csv_data))
+df = pd.DataFrame([
+    ['green', 'M',  10.1, 'class1'],
+    ['red',   'L',  13.5, 'class2'],
+    ['blue',  'XL', 15.3, 'class1']
+])
 df.columns = ['color', 'size', 'price', 'classlabel']
 
 # 类标签映射到整数
@@ -37,8 +36,17 @@ print('after mapping ordinal feature size:\r\n', df)
 print(df)
 inv_size_mapping = {v: k for k, v in size_mapping.items()}
 print(inv_size_mapping)
-
-
 # print('color', df['color'].dtype == np.dtype(object))
 #### 合并两个ndarray
 #print(np.concatenate((np.unique(df['classlabel']), np.unique(df['color']))))
+
+from sklearn.preprocessing import LabelEncoder
+X = df[['color', 'size', 'price']].values
+color_le = LabelEncoder()
+X[:, 0] = color_le.fit_transform(X[:,0])
+print(X)
+from sklearn.preprocessing import OneHotEncoder
+ohe = OneHotEncoder(categorical_features=[0])
+print(ohe.fit_transform(X).toarray())
+
+print(pd.get_dummies(df[['price', 'color', 'size']]))
