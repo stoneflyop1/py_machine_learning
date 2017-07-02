@@ -54,6 +54,10 @@ array([0, 1, 0])
 
 one-hot编码的想法是：对于命名特征的每个唯一值都创建一个虚拟的特征(dummy feature)。比如：对于颜色特征的blue,green,red。可以创建三个分别为blue,green,red的虚拟特征。
 
+## 数据转换
+
+示例代码见：[datatrans.py](datatrans.py)
+
 ### 分离数据集为训练集和测试集(Partitioning a dataset in traing and test sets)
 
 使用开源的数据集[Wine](https://archive.ics.uci.edu/ml/datasets/Wine)。本仓库中的wine.data以及wine.names就来自于此开源数据集。
@@ -90,3 +94,35 @@ one-hot编码的想法是：对于命名特征的每个唯一值都创建一个�
 - 针对复杂性，通过规范化(regularization)引入阈值(penalty)
 - 选择一个较少参数的简单模型
 - 对数据进行降维处理
+
+### 稀疏解(sparse solutions)，使用L1规范化(L1 regularization)
+
+$$ L1: {\Vert w \Vert}_1 = \sum\limits_{i=1}^{m} |w_j| $$
+
+以逻辑斯蒂回归作为示例，其中的C参数为阈值的倒数。
+
+### 依序特征选择算法(Sequential feature selection algorithms)
+
+降维方法有：
+
+- 特征选择(`feature selection`) -> 选取原有特征的一个特征子集
+- 特征抽取(`feature extraction`) -> 从原有特征生成一个新的特征子空间
+
+依序特征选择算法是贪婪搜索算法中的一种，通过选取最相关的特征子集以改进计算效率或者降低误差，去掉的一般是不太相关的特征或者噪声。对于无法使用规范化方法的模型，这是一种非常有用的算法。
+
+一个经典的依序特征选择算法是依序后向选择(Sequential Backward Selection,SBS)，它以尽量小的性能损失(decay in performance)来改进分类器的计算效率。
+
+SBS的实现方式为：依序删除特征，直到新的特征子空间包含了想要的特征个数。为了确定在每个阶段需要删除哪个特征，需要有一个判别函数J，为了使得J最小，使得J最大的特征将被删除。J函数最简单的形式为：特征删除后与特征删除前分类器的性能差。
+
+设总的特征维度为d，当前阶段需要使用的特征维度为k。
+
+1. 初始化算法，k=d
+1. 确定特征 $ x^- $ 使得判别 $x^- = arg max J(X_k - x) $ 最大，其中 $ x \in  X_i $
+1. 删除特征 $ x^- $，从而 $ X_{k-1} := X_k - x^-;k := k - 1 $
+1. 若k与想要的特征个数相等，则终止程序；否则返回第二步
+
+在scikit-learn中还有很多其他的特征选择算法，详见[官方文档](http://scikit- learn.org/stable/modules/feature_selection.html)
+
+### 使用随机森林获取特征的重要性
+
+scikit-learn中的随机森林分类器提供了获取特征重要性的属性。
