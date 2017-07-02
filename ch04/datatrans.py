@@ -121,5 +121,8 @@ plt.tight_layout()
 plt.show()
 
 # DeprecationWarning: Function transform is deprecated; Support to use estimators as feature selectors will be removed in version 0.19. Use SelectFromModel instead.  warnings.warn(msg, category=DeprecationWarning)
-X_selected = forest.transform(X_train, threshold=0.15)
+# X_selected = forest.transform(X_train, threshold=0.15)
+from sklearn.feature_selection import SelectFromModel
+sfm = SelectFromModel(forest, threshold=0.15, prefit=True)
+X_selected = sfm.transform(X_train)
 print(X_selected.shape)
