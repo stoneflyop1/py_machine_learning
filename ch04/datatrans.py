@@ -3,7 +3,7 @@ import numpy as np
 
 # Split Wine dataset https://archive.ics.uci.edu/ml/datasets/Wine/wine.data
 print('Start deal with wine.data: https://archive.ics.uci.edu/ml/datasets/Wine/wine.data')
-df_wine = pd.read_csv('wine.data', header=None)
+df_wine = pd.read_csv('../data/wine.data', header=None)
 df_wine.columns = ['Class label', 'Alcohol',
                     'Malic acid', 'Ash',
                     'Alcaliniity of ash', 'Magnesium',
