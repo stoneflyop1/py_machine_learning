@@ -24,3 +24,45 @@ scikit-learn中有PCA模块。
 ```python
 from sklearn.decomposition import PCA
 ```
+
+## 线性判别分析(LDA)
+
+PCA是通过找到正交的特征并且保证方差最大化的方式进行降维。LDA也类似，它是要找一个特征子空间使得类别尽可能的区分开。它们之间的主要区别是：LDA是一种监督算法。
+
+LDA的假设：
+
+- 数据是正态分布的(normally distriubuted)
+- 分类具有相同的协方差矩阵
+- 特征在统计意义上相互独立
+
+注：即使某些假设不满足，LDA可能依然表现很好。
+
+步骤：
+
+1. 标准化d维数据集
+1. 对每一个类别，计算d维的平均向量
+1. 构造`between-class`散点矩阵(scatter matrix) $S_B$ ，以及`within-class`散点矩阵 $S_w$
+1. 计算 ${S_w}^{-1}S_B$ 的特征向量和特征值
+1. 选择k个特征构造 $d \times k$ 维的变换矩阵W；特征向量作为W的列
+1. 根据变换矩阵W，投射样本到新的特征子空间
+
+### 计算散点矩阵
+
+针对不同类别结果对样本进行平均。如下公式中的i表示第i个类别。
+
+平均向量公式：
+
+$$ m_i = \frac{1}{n_i} \sum\limits_{x \in D_i}^{c} x_m $$
+
+within-class散点矩阵公式：
+
+$$ S_W = \sum\limits_{i=1}^{c} S_i $$
+$$ S_i = \sum\limits_{x \in D_i}^{c} {(x-m_i)(x-m_i)^T} $$
+
+考虑到类别的值可能不是均匀分布的，需要对散点矩阵进行缩放(我们发现，缩放后的散点矩阵其实就是协方差矩阵)：
+
+$$ \Sigma_i = \frac{1}{N_i}S_W = \frac{1}{N_i} \sum\limits_{x \in D_i}^{c} (x-m_i)(x-m_i)^T $$
+
+between-class散点矩阵公式(m为整个的均值，包括所有类别的样本)：
+
+$$ S_B = \sum\limits_{i=1}^{c} {N_i (m_i-m)(m_i-m)^T}  $$

@@ -117,8 +117,8 @@ SBS的实现方式为：依序删除特征，直到新的特征子空间包含�
 设总的特征维度为d，当前阶段需要使用的特征维度为k。
 
 1. 初始化算法，k=d
-1. 确定特征 $ x^- $ 使得判别 $x^- = arg max J(X_k - x) $ 最大，其中 $ x \in  X_i $
-1. 删除特征 $ x^- $，从而 $ X_{k-1} := X_k - x^-;k := k - 1 $
+1. 确定特征 $x^-$ 使得判别 $x^- = arg max J(X_k - x)$ 最大，其中 $x \in  X_i$
+1. 删除特征 $ x^- $，从而 $X_{k-1} := X_k - x^-;k := k - 1$
 1. 若k与想要的特征个数相等，则终止程序；否则返回第二步
 
 在scikit-learn中还有很多其他的特征选择算法，详见[官方文档](http://scikit-learn.org/stable/modules/feature_selection.html)。
