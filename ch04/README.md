@@ -27,7 +27,7 @@
 
 ### 映射有序特征(Mapping ordinal features)
 
-我们通常把有序特性的数据映射到整数类型数据上，若衣服的大小号虽然用字符串标识，但在使用时，我们一般按照大小号的顺序映射到整型数值。
+我们通常把有序特性的数据映射到整数类型数据上，如衣服的大小号虽然用字符串标识，但在使用时，我们一般按照大小号的顺序映射到整型数值。
 
 ### 对类别标签进行编码(Encoding class labels)
 
@@ -48,11 +48,11 @@ df.columns = ['color', 'size', 'price', 'classlabel']
 array([0, 1, 0])
 ```
 
-### 对命名特征(nominal feature)实行one-hot编码
+### 对命名特征(nominal feature)进行one-hot编码
 
 命名特征也可以使用上文提到的`LabelEncoder`进行到数值的映射。不过这样映射的值会形成天然的有序关系，而原本的命名特征其实没有这种关系。一种变通的方法(workaround)就是使用one-hot编码。
 
-one-hot编码的想法是：对于命名特征的每个唯一值都创建一个虚拟的特征(dummy feature)。比如：对于颜色特征的blue,green,red。可以创建三个分别为blue,green,red的虚拟特征。
+one-hot编码的思路是：对于命名特征的每个唯一值都创建一个虚拟的特征(dummy feature)。比如：对于颜色特征的blue,green,red。可以创建三个分别为blue,green,red的虚拟特征。
 
 ## 数据转换
 
@@ -82,7 +82,7 @@ one-hot编码的想法是：对于命名特征的每个唯一值都创建一个�
 | 4.0 | 0.801784 | 0.8 |
 | 5.0 | 1.336306 | 1.0 |
 
-注：正则化一般用来限制特性值中的值范围，标准化更实用。
+注：正则化一般用来限制特性值的值范围，标准化更实用。
 
 ## 使用有意义的数据优化模型
 
@@ -121,7 +121,7 @@ SBS的实现方式为：依序删除特征，直到新的特征子空间包含�
 1. 删除特征 $ x^- $，从而 $ X_{k-1} := X_k - x^-;k := k - 1 $
 1. 若k与想要的特征个数相等，则终止程序；否则返回第二步
 
-在scikit-learn中还有很多其他的特征选择算法，详见[官方文档](http://scikit- learn.org/stable/modules/feature_selection.html)
+在scikit-learn中还有很多其他的特征选择算法，详见[官方文档](http://scikit-learn.org/stable/modules/feature_selection.html)
 
 ### 使用随机森林获取特征的重要性
 
