@@ -2,7 +2,7 @@ import pandas as pd
 
 from wine_data import get_wine_data
 
-X_train_std, X_test_std, y_train, y_test = get_wine_data()
+X_train, X_train_std, X_test_std, y_train, y_test = get_wine_data()
 
 import numpy as np
 cov_mat = np.cov(X_train_std.T)
@@ -31,16 +31,8 @@ w = np.hstack((eigen_pairs[0][1][:, np.newaxis],
 print('Matrix W:\n', w)
 
 X_train_pca = X_train_std.dot(w)
-colors = ['r', 'b', 'g']
-markers = ['s', 'x', 'o']
-for l, c, m in zip(np.unique(y_train), colors, markers):
-    plt.scatter(X_train_pca[y_train==l, 0],
-                X_train_pca[y_train==l, 1],
-                c=c, label=l, marker=m)
-plt.xlabel('PC 1')
-plt.ylabel('PC 2')
-plt.legend(loc='lower left')
-plt.show()
+from plot import plot_scatters
+plot_scatters(X_train_pca, y_train, 'PC 1', 'PC 2')
 
 ###### use sklearn pca
 from plot import plot_decision_regions

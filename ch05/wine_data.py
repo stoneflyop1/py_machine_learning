@@ -14,4 +14,4 @@ def get_wine_data():
     sc = StandardScaler()
     X_train_std = sc.fit_transform(X_train)
     X_test_std = sc.transform(X_test)
-    return (X_train_std,  X_test_std, y_train, y_test )
+    return (X_train, X_train_std,  X_test_std, y_train, y_test )

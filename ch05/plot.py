@@ -22,3 +22,17 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
         plt.scatter(x=X[y == cl, 0], y=X[y == cl, 1],
                     alpha=0.8, c=cmap(idx),
                     marker=markers[idx], label=cl)
+
+
+def plot_scatters(X_train, y_train, xlabel, ylabel):
+    colors = ['r', 'b', 'g']
+    markers = ['s', 'x', 'o']
+    for l, c, m in zip(np.unique(y_train), colors, markers):
+        plt.scatter(X_train[y_train==l, 0],
+                    X_train[y_train==l, 1],
+                    c=c, label=l, marker=m)
+    plt.xlabel('PC 1')
+    plt.ylabel('PC 2')
+    plt.legend(loc='lower left')
+    plt.show()
+
