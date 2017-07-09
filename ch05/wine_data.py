@@ -1,10 +1,6 @@
 import pandas as pd
-
-
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
-
 
 def get_wine_data():
     df_wine = pd.read_csv('../data/wine.data', header=None)

@@ -67,8 +67,10 @@ X_train_lda = X_train_std.dot(w)
 from plot import *
 plot_scatters(X_train_lda, y_train, 'LD 1', 'LD 2')
 
-from sklearn.lda import LDA
-lda = LDA(n_components=2)
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+lda = LinearDiscriminantAnalysis(n_components=2)
+#from sklearn.lda import LDA
+#lda = LDA(n_components=2)
 X_train_lda = lda.fit_transform(X_train_std, y_train)
 from sklearn.linear_model import LogisticRegression
 lr = LogisticRegression()

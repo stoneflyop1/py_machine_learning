@@ -42,7 +42,7 @@ LDA的假设：
 1. 标准化d维数据集
 1. 对每一个类别，计算d维的平均向量
 1. 构造`between-class`散点矩阵(scatter matrix) $S_B$ ，以及`within-class`散点矩阵 $S_w$
-1. 计算 ${S_w}^{-1}S_B$ 的特征向量和特征值
+1. 计算 $W = {S_w}^{-1}S_B$ 的特征向量和特征值
 1. 选择k个特征构造 $d \times k$ 维的变换矩阵W；特征向量作为W的列
 1. 根据变换矩阵W，投射样本到新的特征子空间
 
@@ -66,3 +66,5 @@ $$ \Sigma_i = \frac{1}{N_i}S_W = \frac{1}{N_i} \sum\limits_{x \in D_i}^{c} (x-m_
 between-class散点矩阵公式(m为整个的均值，包括所有类别的样本)：
 
 $$ S_B = \sum\limits_{i=1}^{c} {N_i (m_i-m)(m_i-m)^T}  $$
+
+## 使用非线性映射(nonlinear mappings)的内核主成分分析(kernel principal component analysis)
