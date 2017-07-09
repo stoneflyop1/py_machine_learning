@@ -6,6 +6,8 @@
 
 ## 主成分分析
 
+代码参见：[pca.py](pca.py)
+
 目标是在高维数据中找到最大化方差的方位，并把数据投射到一个新的、具有相等或更少维度的子空间上。
 
 样本空间维度为d，新的降维后的特征子空间维度为k。构造一个dxk维的转换矩阵W，把d维的样本向量x投射到新的k维向量z。
@@ -26,6 +28,8 @@ from sklearn.decomposition import PCA
 ```
 
 ## 线性判别分析(LDA)
+
+代码示例见：[lda.py](lda.py)
 
 PCA是通过找到正交的特征并且保证方差最大化的方式进行降维。LDA也类似，它是要找一个特征子空间使得类别尽可能的区分开。它们之间的主要区别是：LDA是一种监督算法。
 
@@ -68,3 +72,7 @@ between-class散点矩阵公式(m为整个的均值，包括所有类别的样�
 $$ S_B = \sum\limits_{i=1}^{c} {N_i (m_i-m)(m_i-m)^T}  $$
 
 ## 使用非线性映射(nonlinear mappings)的内核主成分分析(kernel principal component analysis)
+
+$$ \phi:R^d \rightarrow R^k (k \gg d)  $$
+
+代码示例见：[kernelpca.py](kernelpca.py)
