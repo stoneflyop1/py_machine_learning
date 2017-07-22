@@ -63,8 +63,36 @@
 
 除了对准确性(accuracy)的评估，还有一些其他的性能度量方法，比如：精确度(precision)，回溯(recall)以及F1分数(F1-score)。
 
+示例代码见：[metrics.py](metrics.py)。
+
 ### Confusion Matrix
 
 一个方阵，给出了四种情况的{{true positives(TP), false negatives(FN)}, {false positives(FP), true negatives(TN)}}下的总数。
 
-示例代码见[grid.py](grid.py)最后部分。
+### 优化分类模型的precision和recall
+
+`error`简写为`ERR`，`accuracy`简写为`ACC`，`precision`简写为`PRE`，`recall`简写为`REC`。
+
+$$ ERR = \frac{FP+FN}{FP+FN+TP+TN} $$
+
+$$ ACC = \frac{TP+TN}{FP+FN+TP+TN} = 1-ERR $$
+
+true positive rate(TPR)
+
+$$ TPR = \frac{TP}{P} = \frac{TP}{FN+TP} $$
+
+false positive rate(FPR)
+
+$$ FPR = \frac{FP}{N} = \frac{FP}{FP+TN} $$
+
+$$ PRE = \frac{TP}{TP+FP} $$
+
+$$ REC = TPR = \frac{TP}{P} = \frac{TP}{FN+TP}  $$
+
+F1-score
+
+$$ F1 = 2 \frac{PRE \times REC}{PRE + REC} $$
+
+### ROC曲线(receiver operating characteristic)
+
+ROC图根据false-positive和true-positive的比率提供的性能指标来选择分类模型。ROC图的对角线可以解释为随机猜测，落在对角线以下的认为比随机猜测还要差。根据ROC曲线，我们可以计算area under the curve(AUC)来刻画分类器模型的性能。

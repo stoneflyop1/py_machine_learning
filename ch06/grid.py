@@ -48,19 +48,4 @@ print('DT CV accuracy: %.3f +/- %.3f' % (
     np.mean(scores), np.std(scores)
 ))
 
-######## Confusion Matrix
-from sklearn.metrics import confusion_matrix
-pipe_svc.fit(X_train, y_train)
-y_pred = pipe_svc.predict(X_test)
-confmat = confusion_matrix(y_true=y_test, y_pred=y_pred)
-print(confmat)
 
-import matplotlib.pyplot as plt
-fig, ax = plt.subplots(figsize=(4.0, 4.0))
-ax.matshow(confmat, cmap=plt.cm.Blues, alpha=0.3)
-for i in range(confmat.shape[0]):
-    for j in range(confmat.shape[1]):
-        ax.text(x=j, y = i, s=confmat[i,j], va='center', ha='center')
-plt.xlabel('predict label')
-plt.ylabel('true label')
-plt.show()
