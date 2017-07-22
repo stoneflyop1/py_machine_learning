@@ -58,3 +58,13 @@
 网格搜索还可以执行嵌套的交叉验证(nested cross-validation)，可以很方便的选择性能更好的算法。
 
 示例代码见：[grid.py](grid.py)
+
+## 性能评估度量(performance evaluation metrics)
+
+除了对准确性(accuracy)的评估，还有一些其他的性能度量方法，比如：精确度(precision)，回溯(recall)以及F1分数(F1-score)。
+
+### Confusion Matrix
+
+一个方阵，给出了四种情况的{{true positives(TP), false negatives(FN)}, {false positives(FP), true negatives(TN)}}下的总数。
+
+示例代码见[grid.py](grid.py)最后部分。
