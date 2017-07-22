@@ -28,3 +28,23 @@
 
 对k方面交叉验证方法的一个改进是分层k方面交叉验证(stratified k-fold cross-validation)，一般可以得到更好的偏差和方差估计，尤其是对于类别不成比例的情况。因为在每个方面，它都会保持类别的比例。
 
+## 通过学习曲线和验证曲线调试算法
+
+- 通过学习曲线诊断过拟合(高方差)或欠拟合(高偏差)问题。
+- 通过验证曲线给出学习算法的常见问题。
+
+代码示例见：[curves.py](curves.py)。
+
+注：scikit-learn中的`learing_curve`和`validation_curve`中交叉验证默认使用的都是`stratified k-fold cross-validation`。
+
+### 学习曲线(learing curves)
+
+高偏差(High Bias)说明训练和交叉验证的精确度太低，模型欠拟合。一般的改进做法是：增加模型的参数数量，比如 收集或构造其他特征，或减少规则化(regularization)的维度(如：SVM或LR分类器)。
+
+高方差(High Variance)说明训练和交叉验证之间有很大的精度偏差，模型过拟合。改进做法是：收集更多的训练数据或减少模型的复杂度，通过特征选择或特征提取减少特征数量也很有帮助。
+
+学习曲线的横轴是训练数据样本的数量，纵轴是测试数据的精确度。
+
+### 验证曲线(validation curves)
+
+与学习曲线类似，验证曲线也可以很容易的发现过拟合和欠拟合现象。与学习曲线不同，验证曲线的横轴是模型的参数，比如：LR中的反规范化参数C(inverse regularization parameter C)。
