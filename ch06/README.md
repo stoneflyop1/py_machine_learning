@@ -48,3 +48,11 @@
 ### 验证曲线(validation curves)
 
 与学习曲线类似，验证曲线也可以很容易的发现过拟合和欠拟合现象。与学习曲线不同，验证曲线的横轴是模型的参数，比如：LR中的反规范化参数C(inverse regularization parameter C)。
+
+## 采用网格搜索(grid search)微调模型
+
+机器学习中有两种类型的参数，一种参数用来从训练数据中学习，比如：LR中的权重，还有一种参数用来做独立的优化。后一种参数是调整参数(tuning parameters)，也叫做超参数(hyperparameters)，比如：LR中的规范化参数(regulation parameter)，或者决策树中的深度参数(depth parameter)
+
+网格搜索是一种超参数优化技术，通过优化超参数值的组合，进一步优化模型的性能。
+
+示例代码见：[grid.py](grid.py)
