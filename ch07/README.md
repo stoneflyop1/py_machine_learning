@@ -19,3 +19,11 @@ $$ P(y \geq k) = \sum \limits_{k}^{n}{\left( \begin{array}{c} n \\ k \end{array}
 ## 实现一个简单的多数表决分类器
 
 实现了一个可以带权重的分类器，表决支持类标记(classlabel)以及概率(probability)，代码见：[mvclassifier.py](mvclassifier.py)。
+
+## Bagging - 从自举样本(bootstrap samples)构建分类器组合
+
+Bagging也被称为自举汇聚法(bootstrap aggregating)，与有放回抽样类似。
+
+随机森林方法可以认为是Bagging的一个特例。
+
+示例代码见：[bagging.py](bagging.py)。
