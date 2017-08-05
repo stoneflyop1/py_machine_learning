@@ -68,3 +68,22 @@ sklearn中实现的idf(t,d)为：
 $$ idf(t,d) = log\frac{1+n_d}{1+df(d,t)} $$
 
 $$ (tf-idf)(t,d) = tf(t,d) x (idf(t,d)+1) $$
+
+## 清理文本数据
+
+一般的原始文本都包含了很多无关的字符(比如：HTML标记、标点符号等)，因此需要进行清理。
+
+清理的代码见：[cleandata.py](cleandata.py)
+
+## 处理文档为tokens
+
+- stopwords
+- word stemming
+
+python的[NLTK包](https://github.com/nltk)。
+
+## 训练分类
+
+GridSearch的示例代码：[gridlearn.py](gridlearn.py)
+
+处理大数据集的代码：[main.py](main.py)
