@@ -58,3 +58,7 @@ $$ y = {w_0}+{w_1}x+{w_2}{x^2}{x^2}+...+{w_d}x^d $$
 简单的示例参见：[poly.py](poly.py)
 
 machine的示例见：[machine_nonlinear.py](machine_nonlinear.py)
+
+## 决策树回归
+
+分类问题一般可以使用信息增加(Information Gain)准则，而在回归分析中，我们使用MSE准则。
