@@ -15,20 +15,20 @@ import seaborn as sns
 sns.set(style='whitegrid', context="notebook")
 cols = ['CACH', 'CHMIN', 'CHMAX', 'PRP', 'ERP']
 
-#sns.pairplot(df[cols], size=2.0)
-#plt.show()
+# sns.pairplot(df[cols], size=2.0)
+# plt.show()
 
 # 恢复默认的matplotlib的样式设置
 # sns.reset_orig()
 
 import numpy as np
-# cm = np.corrcoef(df[cols].values.T)
-# sns.set(font_scale=1.5)
-# hm = sns.heatmap(
-#     cm, cbar=True, annot=True, square=True, fmt=".2f",
-#     annot_kws={'size':15}, yticklabels=cols, xticklabels=cols
-# )
-# plt.show()
+cm = np.corrcoef(df[cols].values.T)
+sns.set(font_scale=1.5)
+hm = sns.heatmap(
+    cm, cbar=True, annot=True, square=True, fmt=".2f",
+    annot_kws={'size':15}, yticklabels=cols, xticklabels=cols
+)
+plt.show()
 
 class LinearRegressionGD(object):
 

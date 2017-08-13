@@ -28,3 +28,33 @@ RANdom SAmple Consensus(RANSAC)算法是用数据的一个子集，叫做内部�
 - Mean Squared Error(MSE)
 - Standardized version of MSE ($R^2$)
 
+### 回归中使用正规化方法(regularized methods)
+
+正规化(regularization)是用来处理过拟合的方法，它会添加一些额外的信息，从而缩小了模型参数范围来诱发一个针对复杂性的补偿(induce a penalty against complexity)。常用的正规化线性回归分析有：
+
+- 脊回归(Ridge Regression)，一个L2补偿模型(L2 penalized model)，直接在cost function上加上权重的L2函数(带有超参数$\lambda$)
+
+    ```python
+    from sklearn.linear_model import Ridge
+    ridge = Ridge(alpha=1.0)
+    ```
+- 最小绝对收缩和选择算子(Least Absolute Shrinkage and Selection Operator, LASSO), L1
+
+    ```python
+    from sklearn.linear_model import Lasso
+    lasso = Lasso(alpha=1.0)
+    ```
+- 弹性网(Elastic Net), L1 and L2
+
+    ```python
+    from sklearn.linear_model import ElasticNet
+    elnet = ElasticNet(alpha=1.0, l1_ratio=0.5)
+    ```
+
+## 多项式回归
+
+$$ y = {w_0}+{w_1}x+{w_2}{x^2}{x^2}+...+{w_d}x^d $$
+
+简单的示例参见：[poly.py](poly.py)
+
+machine的示例见：[machine_nonlinear.py](machine_nonlinear.py)
