@@ -139,6 +139,7 @@ Temporary Items
 # large data files
 data/aclImdb/
 data/*.csv
+data/handwriting
 
 # python serialized files
 *.pkl
